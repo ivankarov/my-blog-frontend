@@ -1,11 +1,11 @@
-import React, {useState,useEffect} from 'react';
+import React, {useState,useEffect,useCallback} from 'react';
 import {commentService} from '../service/commentService';
 import DeleteCommentButton from './DeleteCommentButton';
 const CommentList =({postId}) =>{
     const [comments,setComments]=useState([]);
     const [loading,setLoading]=useState(false);
     const[error,setError]=useState('');
-    const loadComments = async() => {
+    const loadComments = useCallback(async() => {
         try{
             setLoading(true);
             const commentsData = await commentService.getCommentsByPost(postId);
@@ -17,7 +17,7 @@ const CommentList =({postId}) =>{
         finally{
             setLoading(false);
         }
-    };
+    },[postId]);
     useEffect(()=>{if(postId){loadComments();}},[postId,loadComments]);
     if (loading) {
         return <div>Загрузка коментов...</div>;

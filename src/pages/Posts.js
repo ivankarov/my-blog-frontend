@@ -1,4 +1,4 @@
-import React ,{useState,useEffect} from 'react';
+import React ,{useState,useEffect,useCallback} from 'react';
 import {postService} from "../service/postService";
 import CreatePost from "../components/CreatePost";
 import DeletePostButton from "../components/DeletePostButton";
@@ -9,8 +9,7 @@ const Posts =()=>{
     const [loading,setLoading] = useState(true);
     const [posts,setPosts] = useState([]);
     const [error,setError] = useState('');
-    useEffect(() =>{loadPosts();} , [loadPosts]);
-    const loadPosts = async () => { 
+    const loadPosts = useCallback( async () => { 
         try{
             setLoading(true);
             const postsData=await postService.getAllPosts();
@@ -33,7 +32,8 @@ const Posts =()=>{
         }finally{
             setLoading(false);
         }
-    };
+    },[]);
+    useEffect(() =>{loadPosts();} , [loadPosts]);
     const handlePostCreated =()=>{
         loadPosts();
     };
