@@ -28,7 +28,7 @@ const Posts =()=>{
             });
             setPosts(postsArray);
         }catch(err){
-            setError('Не удалось загрузить посты...' + (err.response?.data?.message || error.message));
+            setError('Не удалось загрузить посты...' + (err.response?.data?.message || err.message));
         }finally{
             setLoading(false);
         }
