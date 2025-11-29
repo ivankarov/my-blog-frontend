@@ -8,7 +8,7 @@ const DeletePostButton= ({postId, onPostDeleted}) => {
         try{
             setIsDeleting(true);
             try{
-                const result = await postService.deletePost(postId);
+                await postService.deletePost(postId);
             }catch(error){
                 if(error.response?.status !== 404){
                     throw error;

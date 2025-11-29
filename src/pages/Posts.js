@@ -9,11 +9,10 @@ const Posts =()=>{
     const [loading,setLoading] = useState(true);
     const [posts,setPosts] = useState([]);
     const [error,setError] = useState('');
-    useEffect(() =>{loadPosts();} , []);
+    useEffect(() =>{loadPosts();} , [loadPosts]);
     const loadPosts = async () => { 
         try{
             setLoading(true);
-            const token = localStorage.getItem('token');
             const postsData=await postService.getAllPosts();
             let postsArray = [];
             if(postsData && Array.isArray(postsData)){

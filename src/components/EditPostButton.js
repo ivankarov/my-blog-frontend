@@ -1,6 +1,5 @@
-import Refct, {useState} from 'react';
+import React, {useState} from 'react';
 import {postService} from '../service/postService';
-import { isEditable } from '@testing-library/user-event/dist/utils';
 const EditPostButton = ({post,onPostUpdated}) =>{
     const[IsEdition, SetIsEdition] = useState(false);
     const[IsLoading, SetIsLoading] = useState(false);

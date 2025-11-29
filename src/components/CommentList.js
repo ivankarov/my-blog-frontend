@@ -18,7 +18,7 @@ const CommentList =({postId}) =>{
             setLoading(false);
         }
     };
-    useEffect(()=>{if(postId){loadComments();}},[postId]);
+    useEffect(()=>{if(postId){loadComments();}},[postId,loadComments]);
     if (loading) {
         return <div>Загрузка коментов...</div>;
     }
